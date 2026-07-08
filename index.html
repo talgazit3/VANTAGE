@@ -3,266 +3,591 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>שירות פרימיום // מניעים אותך לפעולה</title>
+    <title>NEXT-GEN // דף נחיתה פרימיום</title>
+    <!-- פונט גיאומטרי ומודרני -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;400;600;800&display=swap" rel="stylesheet">
     
     <style>
+        /* --- משתנים ואיפוס עיצוב קפדני --- */
+        :root {
+            --bg-dark: #0A0A0C;
+            --bg-card: #141419;
+            --accent-glow: #00F0FF; /* cyan הייטק */
+            --accent-purple: #7000FF; /* סגול עמוק לשילוב */
+            --text-primary: #FFFFFF;
+            --text-secondary: #94A3B8;
+            --phone-green: #00E676;
+            --radius-lg: 16px;
+            --radius-md: 8px;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Assistant', sans-serif;
-        }
-
-        :root {
-            --bg-main: #111111;
-            --bg-secondary: #1a1a1a;
-            --accent: #CCFF00; /* צהוב-ירוק זוהר, ספורטיבי ומניע לפעולה */
-            --text-light: #ffffff;
-            --text-dark: #111111;
-            --phone-green: #25D366; /* ירוק של כפתור יצירת קשר */
-            --radius: 12px;
-            --transition: all 0.25s ease;
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--bg-main);
-            color: var(--text-light);
-            line-height: 1.6;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 80% 20%, rgba(0, 240, 255, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 15% 70%, rgba(112, 0, 255, 0.06) 0%, transparent 45%);
         }
 
-        /* מסך Hero עוצמתי */
-        .hero {
-            min-height: 90vh;
+        /* --- רכיב אנימציה גלובלי (Scroll Reveal) --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 { transition-delay: 0.15s; }
+        .delay-2 { transition-delay: 0.3s; }
+        .delay-3 { transition-delay: 0.45s; }
+
+        /* --- 1. סרגל ניווט יוקרתי (Navbar) --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            text-align: center;
-            padding: 40px 20px;
-            background: linear-gradient(180deg, rgba(17,17,17,0.6) 0%, rgba(17,17,17,0.95) 100%), 
-                        url('https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1000&auto=format&fit=crop') no-repeat center center/cover;
+            padding: 20px 8%;
+            background: rgba(10, 10, 12, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
+        .logo {
+            font-size: 22px;
             font-weight: 800;
-            text-transform: uppercase;
-            line-height: 1.1;
-            margin-bottom: 20px;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, var(--accent-glow), #AA00FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .hero h1 span {
-            color: var(--accent);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            max-width: 600px;
-            margin-bottom: 40px;
-            color: #ccc;
-        }
-
-        /* טופס מהיר בתוך ה-Hero */
-        .lead-form {
-            background-color: var(--bg-secondary);
-            padding: 30px;
-            border-radius: var(--radius);
-            border: 2px solid rgba(204, 255, 0, 0.1);
-            width: 100%;
-            max-width: 450px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .lead-form h3 {
-            font-size: 1.4rem;
-            margin-bottom: 20px;
+        .nav-btn {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: var(--radius-md);
             font-weight: 600;
-        }
-
-        .input-group {
-            margin-bottom: 15px;
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 15px;
-            background-color: #2a2a2a;
-            border: 1px solid #444;
-            border-radius: 6px;
-            color: #fff;
-            font-size: 1rem;
-            outline: none;
-            text-align: right;
-            transition: var(--transition);
-        }
-
-        .input-group input:focus {
-            border-color: var(--accent);
-        }
-
-        .form-btn {
-            width: 100%;
-            padding: 15px;
-            background-color: var(--accent);
-            color: var(--text-dark);
-            border: none;
-            border-radius: 6px;
-            font-size: 1.1rem;
-            font-weight: 800;
             cursor: pointer;
             transition: var(--transition);
         }
 
-        .form-btn:hover {
-            background-color: #fff;
-            transform: translateY(-2px);
+        .nav-btn:hover {
+            border-color: var(--accent-glow);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
         }
 
-        /* אזור המלצות / הוכחה חברתית */
-        .testimonials {
-            padding: 80px 5%;
-            text-align: center;
-            background-color: var(--bg-secondary);
+        /* --- 2. מסך פתיחה מרסק (Hero Section) --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 8% 60px 8%;
+            gap: 40px;
         }
 
-        .testimonials h2 {
-            font-size: 2rem;
-            margin-bottom: 40px;
-        }
-
-        .testimonials h2 span {
-            color: var(--accent);
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .card {
-            background-color: var(--bg-main);
-            padding: 30px;
-            border-radius: var(--radius);
+        .hero-content {
+            flex: 1.2;
             text-align: right;
-            border-right: 4px solid var(--accent);
         }
 
-        .card p {
-            font-style: italic;
-            margin-bottom: 15px;
-            color: #ddd;
-        }
-
-        .card-author {
+        .badge {
+            display: inline-block;
+            background: rgba(0, 240, 255, 0.07);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            color: var(--accent-glow);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.9rem;
             font-weight: 600;
-            font-size: 0.95rem;
-            color: var(--accent);
+            margin-bottom: 25px;
         }
 
-        /* 📞 כפתור טלפון קבוע וצף (Floating Action Button) */
-        .floating-phone-btn {
-            position: fixed;
-            bottom: 30px;
-            left: 30px; /* שמאל כדי שלא יתנגש עם אלמנטים של נגישות בצד ימין */
-            background-color: var(--phone-green);
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--accent-glow) 0%, #9D4EDD 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        /* הטופס המקצועי בתוך ה-Hero */
+        .hero-form-container {
+            flex: 0.8;
+            background: rgba(20, 20, 25, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+            position: relative;
+        }
+
+        .hero-form-container::before {
+            content: '';
+            position: absolute;
+            top: -1px; left: -1px; right: -1px; bottom: -1px;
+            border-radius: var(--radius-lg);
+            background: linear-gradient(135deg, rgba(0,240,255,0.3), transparent, rgba(112,0,255,0.3));
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .form-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .form-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 16px;
+            background: #0F0F12;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--radius-md);
             color: white;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .input-field:focus {
+            border-color: var(--accent-glow);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(90deg, var(--accent-purple), #5000B8);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 20px rgba(112, 0, 255, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(112, 0, 255, 0.5);
+            background: linear-gradient(90deg, #8214FF, #5A00D1);
+        }
+
+        /* --- 3. אזור מספרים והוכחות (Stats Section) --- */
+        .stats-section {
+            padding: 60px 8%;
+            background: rgba(255,255,255,0.01);
+            border-y: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent-glow);
+            margin-bottom: 5px;
+        }
+
+        .stat-item p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        /* --- 4. אזור פיצ'רים / יתרונות (Features Grid) --- */
+        .features {
+            padding: 100px 8%;
+            text-align: center;
+        }
+
+        .section-header {
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            padding: 40px 30px;
+            border-radius: var(--radius-lg);
+            text-align: right;
+            border: 1px solid rgba(255,255,255,0.02);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 240, 255, 0.2);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(112, 0, 255, 0.1);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-glow);
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+        }
+
+        .feature-card h4 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        /* --- 5. אזור תהליך עבודה (Process Timeline) --- */
+        .process {
+            padding: 100px 8%;
+            background: rgba(0,0,0,0.2);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 50px auto 0 auto;
+        }
+
+        .timeline-item {
+            padding: 30px;
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            margin-bottom: 30px;
+            position: relative;
+            border-right: 4px solid var(--accent-glow);
+        }
+
+        .timeline-number {
+            position: absolute;
+            top: 25px; left: 30px;
+            font-size: 2rem;
+            font-weight: 800;
+            color: rgba(255,255,255,0.05);
+        }
+
+        .timeline-item h5 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        /* --- 6. אזור חוות דעת יוקרתי (Testimonials) --- */
+        .testimonials {
+            padding: 100px 8%;
+            text-align: center;
+        }
+
+        .testimonial-container {
+            max-width: 700px;
+            margin: 40px auto 0 auto;
+            background: linear-gradient(135deg, rgba(20,20,25,0.8), rgba(10,10,12,0.8));
+            padding: 50px;
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255,255,255,0.05);
+            position: relative;
+        }
+
+        .quote-icon {
+            font-size: 4rem;
+            color: rgba(0, 240, 255, 0.1);
+            position: absolute;
+            top: 10px; right: 30px;
+        }
+
+        .testimonial-text {
+            font-size: 1.3rem;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--accent-glow);
+        }
+
+        /* --- 7. פוטר / הנעה לפעולה תחתונה --- */
+        footer {
+            padding: 60px 8%;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* --- 📞 כפתור טלפון קבוע צף פרימיום --- */
+        .floating-phone {
+            position: fixed;
+            bottom: 35px;
+            left: 35px;
+            background: var(--phone-green);
             width: 65px;
             height: 65px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-            z-index: 9999;
+            box-shadow: 0 0 20px rgba(0, 230, 118, 0.4);
+            z-index: 2000;
             text-decoration: none;
             transition: var(--transition);
-            animation: pulse 2s infinite;
         }
 
-        .floating-phone-btn:hover {
-            transform: scale(1.1);
-            background-color: #1ebd58;
+        .floating-phone:hover {
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 0 30px rgba(0, 230, 118, 0.7);
         }
 
-        .floating-phone-btn svg {
-            width: 30px;
-            height: 30px;
+        .floating-phone svg {
+            width: 28px;
+            height: 28px;
             fill: white;
         }
 
-        /* אנימציית פעימה לכפתור כדי שימשוך תשומת לב */
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
-            }
-            70% {
-                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-            }
+        /* פעימת הניאון מסביב לטלפון */
+        .floating-phone::after {
+            content: '';
+            position: absolute;
+            width: 100%; height: 100%;
+            border-radius: 50%;
+            border: 2px solid var(--phone-green);
+            animation: phonePulse 2.5s infinite;
+            opacity: 0;
         }
 
-        /* מובייל רספונסיבי */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.3rem; }
-            .hero p { font-size: 1.1rem; }
-            .floating-phone-btn {
-                bottom: 20px;
-                left: 20px;
-                width: 55px;
-                height: 55px;
+        @keyframes phonePulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.6); opacity: 0; }
+        }
+
+        /* --- התאמה מלאה למובייל (רספונסיביות) --- */
+        @media (max-width: 968px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 140px;
             }
-            .floating-phone-btn svg {
-                width: 24px;
-                height: 24px;
-            }
+            .hero-content { text-align: center; }
+            .hero h1 { font-size: 2.8rem; }
+            .hero-form-container { width: 100%; }
+            .feature-card { text-align: center; }
+            .feature-icon { margin: 0 auto 25px auto; }
         }
     </style>
 </head>
 <body>
 
+    <!-- סרגל ניווט -->
+    <header>
+        <div class="logo">NEXT-GEN</div>
+        <button class="nav-btn" onclick="document.getElementById('form').scrollIntoView();">להשאיר פרטים</button>
+    </header>
+
+    <!-- 1. מסך ה-Hero הראשי -->
     <section class="hero">
-        <h1>הגיע הזמן לתוצאות <span>אמיתיות</span>.</h1>
-        <p>תפסיק לבזבז זמן על שיטות שלא עובדות. הצטרף לתוכנית הליווי האישית שלנו ותגיע לגרסה הכי טובה של עצמך.</p>
-        
-        <div class="lead-form">
-            <h3>שריין שיחת ייעוץ חינם</h3>
-            <form onsubmit="event.preventDefault(); alert('הפרטים נשלחו בהצלחה! נחזור אליך בהקדם.');">
-                <div class="input-group">
-                    <input type="text" placeholder="שם מלא" required>
-                </div>
-                <div class="input-group">
-                    <input type="tel" placeholder="מספר טלפון" required>
-                </div>
-                <button type="submit" class="form-btn">אני רוצה להתחיל ⚡</button>
+        <div class="hero-content reveal">
+            <span class="badge">טכנולוגיית העתיד כבר כאן</span>
+            <h1>הפתרון המושלם<br>לעסק <span>הדיגיטלי</span> שלך.</h1>
+            <p>אנחנו בונים מערכות אינטראקטיביות, דפי נחיתה ואפליקציות ברמת הגימור הגבוהה ביותר בשוק. הגיע הזמן להיראות כמו מותג פרימיום.</p>
+        </div>
+
+        <div class="hero-form-container reveal delay-1" id="form">
+            <div class="form-title">בוא נתחיל לעבוד</div>
+            <div class="form-subtitle">השאר פרטים ונחזור אליך עם אסטרטגיה מנצחת.</div>
+            <form onsubmit="event.preventDefault(); alert('הפרטים נקלטו! נציג יחזור אליך בהקדם.');">
+                <input type="text" class="input-field" placeholder="שם מלא" required>
+                <input type="tel" class="input-field" placeholder="מספר טלפון" required>
+                <input type="email" class="input-field" placeholder="כתובת אימייל (אופציונלי)">
+                <button type="submit" class="submit-btn">שילחו לי הצעה לקליק ⚡</button>
             </form>
         </div>
     </section>
 
-    <section class="testimonials">
-        <h2>מה הלקוחות שלנו <span>מספרים</span></h2>
-        <div class="grid">
-            <div class="card">
-                <p>"ההחלטה הכי טובה שקיבלתי השנה. היחס המקצועי והמעקב היום-יומי פשוט שינו לי את החיים."</p>
-                <div class="card-author">- תומר א.</div>
+    <!-- 2. אזור מספרים (Stats) -->
+    <section class="stats-section reveal">
+        <div class="stat-item">
+            <h3>+150</h3>
+            <p>פרויקטים מושקים</p>
+        </div>
+        <div class="stat-item">
+            <h3>99%</h3>
+            <p>שביעות רצון לקוחות</p>
+        </div>
+        <div class="stat-item">
+            <h3>24/7</h3>
+            <p>תמיכה וליווי טכנולוגי</p>
+        </div>
+    </section>
+
+    <!-- 3. אזור יתרונות ופיצ'רים (Features) -->
+    <section class="features">
+        <div class="section-header reveal">
+            <h2>למה לעבוד איתנו?</h2>
+            <p>אנחנו לא סתם כותבים קוד, אנחנו מייצרים חוויית משתמש שמוכרת בשבילך.</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card reveal delay-1">
+                <div class="feature-icon">⚡</div>
+                <h4>מהירות עבודה עילאית</h4>
+                <p>האתרים שלנו נטענים בשבריר שנייה בזכות אופטימיזציה קשוחה לקוד ולתמונות.</p>
             </div>
-            <div class="card">
-                <p>"רמה אחת מעל כולם. אין פה דיבורים באוויר, רק תוצאות בשטח ומקצועיות שיא."</p>
-                <div class="card-author">- דניאל מ.</div>
+            <div class="feature-card reveal delay-2">
+                <div class="feature-icon">🎨</div>
+                <h4>עיצוב בהתאמה אישית</h4>
+                <p>בלי תבניות משועממות. כל דף נבנה מאפס לפי אופי המותג וקהל היעד שלכם.</p>
+            </div>
+            <div class="feature-card reveal delay-3">
+                <div class="feature-icon">📈</div>
+                <h4>ממוקד המרות ומכירות</h4>
+                <p>מבנה הדף מתוכנן פסיכולוגית כדי להוביל את הגולש ישירות לשיחת הטלפון.</p>
             </div>
         </div>
     </section>
 
-    <a href="tel:0500000000" class="floating-phone-btn" title="חייג עכשיו">
+    <!-- 4. אזור תהליך העבודה (Process) -->
+    <section class="process">
+        <div class="section-header reveal">
+            <h2>איך זה עובד?</h2>
+            <p>3 צעדים פשוטים עד שהאתר החדש שלך באוויר.</p>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item reveal delay-1">
+                <div class="timeline-number">01</div>
+                <h5>שיחת אפיון ותכנון</h5>
+                <p>נבין בדיוק מי הלקוחות שלכם, מה המוצר שלכם ואיך נכון להציג אותו כדי לשבור את השוק.</p>
+            </div>
+            <div class="timeline-item reveal delay-2">
+                <div class="timeline-number">02</div>
+                <h5>עיצוב ופיתוח קוד קפדני</h5>
+                <p>אנחנו מעצבים ומפתחים את דף הנחיתה עם הדגשים הכי מתקדמים, רספונסיביות מלאה ואנימציות חלוקות.</p>
+            </div>
+            <div class="timeline-item reveal delay-3">
+                <div class="timeline-number">03</div>
+                <h5>QA והשקה חגיגית</h5>
+                <p>בודקים שהכל עובד מושלם בכל המכשירים (אייפון, אנדרואיד, מחשבים) ומעלים את האתר לאוויר.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. אזור המלצות (Testimonial) -->
+    <section class="testimonials">
+        <div class="section-header reveal">
+            <h2>לקוחות שכבר שינו את חוקי המשחק</h2>
+        </div>
+        <div class="testimonial-container reveal delay-1">
+            <div class="quote-icon">”</div>
+            <p class="testimonial-text">"חיפשתי מישהו שיבנה לי דף שלא ייראה כמו עוד תבנית קבועה מהאינטרנט. הם הביאו לי מוצר ברמת הייטק, האנימציות עובדות חלק והלידים לא מפסיקים להגיע. ממליץ בחום!"</p>
+            <div class="testimonial-author">עידן דויטש // מנכ"ל דויטש דיגיטל</div>
+        </div>
+    </section>
+
+    <!-- פוטר סיומת -->
+    <footer>
+        <p>© 2026 NEXT-GEN Initiatives. כל הזכויות שמורות. נבנה בסטנדרט הגבוה ביותר.</p>
+    </footer>
+
+    <!-- 📞 כפתור טלפון קבוע צף עם פעימת ניאון -->
+    <a href="tel:0500000000" class="floating-phone" title="חייג עכשיו לנציג">
         <svg viewBox="0 0 24 24">
             <path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1.02 1.02 0 0 0-1.02.24l-2.2 2.2a15.045 15.045 0 0 1-6.59-6.59l2.2-2.21a1.02 1.02 0 0 0 .24-1.02A11.36 11.36 0 0 1 8.5 4c0-.56-.44-1-1-1H4c-.56 0-1 .44-1 1 0 9.39 7.61 17 17 17 .56 0 1-.44 1-1v-3.5c0-.56-.44-1-1-1z"/>
         </svg>
     </a>
 
+    <!-- 🧠 סקריפט לאנימציות גלילה מקצועיות וחלקות -->
+    <script>
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.15 /* האנימציה תתחיל כשאחוז מהאלמנט נראה לעין */
+        });
+
+        revealElements.forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
