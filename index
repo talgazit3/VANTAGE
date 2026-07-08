@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VANTAGE // Premium Streetwear</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* איפוס הגדרות ומשתנים כלליים */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Assistant', sans-serif;
+        }
+
+        :root {
+            --bg-color: #0D0D0D;
+            --card-bg: #1A1A1A;
+            --text-main: #FFFFFF;
+            --text-secondary: #A6A6A6;
+            --accent-color: #00FF66; /* נגיעת ניאון עדינה */
+            --radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* סרגל ניווט קבוע עם אפקט טשטוש (Blur) */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: rgba(13, 13, 13, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 20px;
+            cursor: pointer;
+        }
+
+        /* מסך פתיחה (Hero) */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            background: linear-gradient(rgba(13, 13, 13, 0.5), rgba(13, 13, 13, 0.9)), 
+                        url('https://images.unsplash.com/photo-1509281373149-e957c6296406?q=80&w=1000&auto=format&fit=crop') no-repeat center center/cover;
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .cta-btn {
+            background-color: var(--text-main);
+            color: var(--bg-color);
+            padding: 14px 32px;
+            font-size: 1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .cta-btn:hover {
+            background-color: transparent;
+            color: var(--text-main);
+            outline: 2px solid var(--text-main);
+            transform: translateY(-2px);
+        }
+
+        /* אזור מוצרים (Products Section) */
+        .products-section {
+            padding: 100px 5%;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 12px;
+            letter-spacing: 3px;
+            color: var(--accent-color);
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            text-align: right;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 380px;
+            background-size: cover;
+            background-position: center;
+            transition: var(--transition);
+        }
+
+        /* שינוי תמונה קטן ב-Hover לרמה גבוהה */
+        .p1 { background-image: url('https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=500&auto=format&fit=crop'); }
+        .p2 { background-image: url('https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?q=80&w=500&auto=format&fit=crop'); }
+        .p3 { background-image: url('https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=500&auto=format&fit=crop'); }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .product-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        .product-price {
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        /* ערכי המותג (Values) */
+        .values-section {
+            padding: 60px 5%;
+            background-color: rgba(255, 255, 255, 0.02);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 30px;
+            text-align: center;
+        }
+
+        .value-item {
+            flex: 1;
+            min-width: 250px;
+            padding: 20px;
+        }
+
+        .value-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .value-item p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* אזור ניוזלטר סופי (Footer CTA) */
+        .footer-cta {
+            padding: 100px 5%;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .footer-cta p {
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            max-width: 500px;
+            margin: 0 auto;
+            gap: 10px;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            background-color: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            color: var(--text-main);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .newsletter-input:focus {
+            border-color: var(--text-main);
+        }
+
+        .submit-btn {
+            background-color: var(--text-main);
+            color: var(--bg-color);
+            border: none;
+            padding: 0 25px;
+            border-radius: var(--radius);
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .submit-btn:hover {
+            background-color: var(--accent-color);
+        }
+
+        /* אנימציות */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* מובייל רספונסיבי */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .newsletter-form { flex-direction: column; }
+            .submit-btn { padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">VANTAGE</div>
+        <div class="nav-icons">
+            <span>🛒</span>
+            <span>☰</span>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>הגדר את הסטייל מחדש.</h1>
+        <p>קולקציית הקיץ הבלעדית של VANTAGE נחתה. פריטים במהדורה מוגבלת המשלבים נוחות מקסימלית עם קו עיצובי חסר פשרות.</p>
+        <a href="#products" class="cta-btn">לצפייה בקולקציה</a>
+    </section>
+
+    <section class="values-section">
+        <div class="value-item">
+            <h3>⚡ משלוח אקספרס</h3>
+            <p>לכל חלקי הארץ תוך 48 שעות ישירות לפתח הבית.</p>
+        </div>
+        <div class="value-item">
+            <h3>💎 ייצור מוגבל</h3>
+            <p>כל פריט מיוצר בסדרות קטנות כדי לשמור על הייחודיות שלך.</p>
+        </div>
+        <div class="value-item">
+            <h3>🌱 חומרים פרימיום</h3>
+            <p>100% כותנה סרוקה ובדים עמידים שנשארים איתך לאורך זמן.</p>
+        </div>
+    </section>
+
+    <section id="products" class="products-section">
+        <div class="section-title">HIGHLIGHTS</div>
+        <div class="products-grid">
+            
+            <div class="product-card">
+                <div class="product-img p1"></div>
+                <div class="product-info">
+                    <div class="product-title">Oversized Hoodie</div>
+                    <div class="product-desc">שחור פחם, 100% כותנה סרוקה כבדה.</div>
+                    <div class="product-price">280 ₪</div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img p2"></div>
+                <div class="product-info">
+                    <div class="product-title">Cargo Pants v2</div>
+                    <div class="product-desc">גזרה ישרה, כיסי קוולאר עמידים ורצועות טקטיות.</div>
+                    <div class="product-price">340 ₪</div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img p3"></div>
+                <div class="product-info">
+                    <div class="product-title">Signature Cap</div>
+                    <div class="product-desc">כובע ריפסטופ עם רקמת לוגו שטוחה.</div>
+                    <div class="product-price">120 ₪</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="footer-cta">
+        <h2>אל תפספס את הדרופ הבא</h2>
+        <p>הצטרף לרשימת התפוצה הסגורה וקבל 10% הנחה על הרכישה הראשונה וגישה לפריטים לפני כולם.</p>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('ברוך הבא למועדון!');">
+            <input type="email" class="newsletter-input" placeholder="הכנס כתובת אימייל..." required>
+            <button type="submit" class="submit-btn">הצטרפות</button>
+        </form>
+    </section>
+
+</body>
+</html>
