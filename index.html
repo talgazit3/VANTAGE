@@ -3,25 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXT-GEN // דף נחיתה פרימיום</title>
-    <!-- פונט גיאומטרי ומודרני -->
+    <title>PRIME REAL ESTATE // נכסי פרימיום</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;400;600;700;800&display=swap" rel="stylesheet">
     
     <style>
-        /* --- משתנים ואיפוס עיצוב קפדני --- */
+        /* --- משתני עיצוב קפדניים (סגנון אדריכלי יוקרתי) --- */
         :root {
-            --bg-dark: #0A0A0C;
-            --bg-card: #141419;
-            --accent-glow: #00F0FF; /* cyan הייטק */
-            --accent-purple: #7000FF; /* סגול עמוק לשילוב */
-            --text-primary: #FFFFFF;
-            --text-secondary: #94A3B8;
-            --phone-green: #00E676;
-            --radius-lg: 16px;
-            --radius-md: 8px;
-            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --bg-dark: #090B0E;
+            --bg-card: #12161C;
+            --accent-gold: #D4AF37; /* זהב יוקרתי עמום */
+            --accent-gold-hover: #F3E5AB;
+            --text-light: #FFFFFF;
+            --text-muted: #94A3B8;
+            --phone-color: #25D366;
+            --radius-box: 12px;
+            --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * {
@@ -34,18 +32,15 @@
 
         body {
             background-color: var(--bg-dark);
-            color: var(--text-primary);
+            color: var(--text-light);
             overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 80% 20%, rgba(0, 240, 255, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 15% 70%, rgba(112, 0, 255, 0.06) 0%, transparent 45%);
         }
 
-        /* --- רכיב אנימציה גלובלי (Scroll Reveal) --- */
+        /* --- אפקט גלילה חלקה (Scroll Reveal) --- */
         .reveal {
             opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(30px);
+            transition: var(--transition-smooth);
         }
 
         .reveal.active {
@@ -53,11 +48,11 @@
             transform: translateY(0);
         }
 
-        .delay-1 { transition-delay: 0.15s; }
-        .delay-2 { transition-delay: 0.3s; }
-        .delay-3 { transition-delay: 0.45s; }
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
 
-        /* --- 1. סרגל ניווט יוקרתי (Navbar) --- */
+        /* --- 1. סרגל ניווט רספונסיבי חכם (Navbar) --- */
         header {
             position: fixed;
             top: 0;
@@ -66,526 +61,683 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 8%;
-            background: rgba(10, 10, 12, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            padding: 20px 6%;
+            background: rgba(9, 11, 14, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
         }
 
         .logo {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 800;
             letter-spacing: 1px;
-            background: linear-gradient(90deg, var(--accent-glow), #AA00FF);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--text-light);
         }
 
-        .nav-btn {
-            background: transparent;
-            color: var(--text-primary);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 10px 20px;
-            border-radius: var(--radius-md);
-            font-weight: 600;
+        .logo span {
+            color: var(--accent-gold);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
             cursor: pointer;
-            transition: var(--transition);
         }
 
-        .nav-btn:hover {
-            border-color: var(--accent-glow);
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
-        }
-
-        /* --- 2. מסך פתיחה מרסק (Hero Section) --- */
+        /* --- 2. מסך פתיחה קולנועי (Hero Section) --- */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding: 120px 8% 60px 8%;
-            gap: 40px;
+            padding: 120px 6% 60px 6%;
+            background: linear-gradient(rgba(9, 11, 14, 0.4), rgba(9, 11, 14, 0.95)), 
+                        url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1500&auto=format&fit=crop') no-repeat center center/cover;
         }
 
-        .hero-content {
-            flex: 1.2;
-            text-align: right;
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 50px;
+            width: 100%;
+            align-items: center;
         }
 
-        .badge {
-            display: inline-block;
-            background: rgba(0, 240, 255, 0.07);
-            border: 1px solid rgba(0, 240, 255, 0.2);
-            color: var(--accent-glow);
-            padding: 6px 16px;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 25px;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
+        .hero-text h1 {
+            font-size: 4.5rem;
             font-weight: 800;
             line-height: 1.1;
             margin-bottom: 20px;
-            letter-spacing: -1px;
         }
 
-        .hero h1 span {
-            background: linear-gradient(135deg, var(--accent-glow) 0%, #9D4EDD 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .hero-text h1 span {
+            color: var(--accent-gold);
         }
 
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
+        .hero-text p {
+            font-size: 1.3rem;
+            color: var(--text-muted);
             max-width: 600px;
-            margin-bottom: 40px;
+            margin-bottom: 35px;
             line-height: 1.6;
         }
 
-        /* הטופס המקצועי בתוך ה-Hero */
-        .hero-form-container {
-            flex: 0.8;
-            background: rgba(20, 20, 25, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            padding: 40px;
-            border-radius: var(--radius-lg);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-            position: relative;
+        /* טופס מהיר מובנה */
+        .lead-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            padding: 40px 30px;
+            border-radius: var(--radius-box);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
         }
 
-        .hero-form-container::before {
-            content: '';
-            position: absolute;
-            top: -1px; left: -1px; right: -1px; bottom: -1px;
-            border-radius: var(--radius-lg);
-            background: linear-gradient(135deg, rgba(0,240,255,0.3), transparent, rgba(112,0,255,0.3));
-            z-index: -1;
-            pointer-events: none;
+        .lead-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            font-weight: 700;
         }
 
-        .form-title {
-            font-size: 1.6rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .form-subtitle {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
+        .lead-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
             margin-bottom: 25px;
         }
 
-        .input-field {
-            width: 100%;
-            padding: 16px;
-            background: #0F0F12;
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: var(--radius-md);
-            color: white;
-            font-size: 1rem;
+        .input-group {
+            position: relative;
             margin-bottom: 15px;
-            outline: none;
-            transition: var(--transition);
         }
 
-        .input-field:focus {
-            border-color: var(--accent-glow);
-            box-shadow: 0 0 10px rgba(0, 240, 255, 0.1);
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 16px;
+            background: #1A1F26;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 6px;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: var(--transition-smooth);
+        }
+
+        .input-group input:focus, .input-group select:focus {
+            border-color: var(--accent-gold);
         }
 
         .submit-btn {
             width: 100%;
             padding: 16px;
-            background: linear-gradient(90deg, var(--accent-purple), #5000B8);
-            color: white;
+            background: var(--accent-gold);
+            color: var(--bg-dark);
             border: none;
-            border-radius: var(--radius-md);
+            border-radius: 6px;
             font-size: 1.1rem;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
-            transition: var(--transition);
-            box-shadow: 0 4px 20px rgba(112, 0, 255, 0.3);
+            transition: var(--transition-smooth);
         }
 
         .submit-btn:hover {
+            background: var(--accent-gold-hover);
             transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(112, 0, 255, 0.5);
-            background: linear-gradient(90deg, #8214FF, #5A00D1);
         }
 
-        /* --- 3. אזור מספרים והוכחות (Stats Section) --- */
-        .stats-section {
-            padding: 60px 8%;
-            background: rgba(255,255,255,0.01);
-            border-y: 1px solid rgba(255,255,255,0.05);
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 40px;
-            text-align: center;
-        }
-
-        .stat-item h3 {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--accent-glow);
-            margin-bottom: 5px;
-        }
-
-        .stat-item p {
-            color: var(--text-secondary);
-            font-size: 1rem;
-        }
-
-        /* --- 4. אזור פיצ'רים / יתרונות (Features Grid) --- */
-        .features {
-            padding: 100px 8%;
-            text-align: center;
+        /* --- 3. אזור נכסים בלעדיים (Featured Estates) --- */
+        .properties {
+            padding: 100px 6%;
         }
 
         .section-header {
-            margin-bottom: 60px;
+            text-align: right;
+            margin-bottom: 50px;
+        }
+
+        .section-header span {
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            font-weight: 700;
+            text-transform: uppercase;
         }
 
         .section-header h2 {
             font-size: 2.8rem;
             font-weight: 800;
-            margin-bottom: 15px;
+            margin-top: 5px;
         }
 
-        .section-header p {
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .features-grid {
+        .property-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
         }
 
-        .feature-card {
+        .property-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-box);
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.02);
+            transition: var(--transition-smooth);
+        }
+
+        .property-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .property-img {
+            width: 100%;
+            height: 240px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .prop-1 { background-image: url('https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=600&auto=format&fit=crop'); }
+        .prop-2 { background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=600&auto=format&fit=crop'); }
+        .prop-3 { background-image: url('https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=600&auto=format&fit=crop'); }
+
+        .tag {
+            position: absolute;
+            top: 15px; right: 15px;
+            background: var(--accent-gold);
+            color: var(--bg-dark);
+            padding: 5px 12px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            border-radius: 4px;
+        }
+
+        .property-info {
+            padding: 25px;
+        }
+
+        .property-price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 5px;
+        }
+
+        .property-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .property-details {
+            display: flex;
+            gap: 15px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+
+        /* --- 4. מספרים שמדברים בעצמם (Stats Counters) --- */
+        .stats {
+            padding: 80px 6%;
+            background: #0D1117;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 40px;
+            text-align: center;
+            border-y: 1px solid rgba(255,255,255,0.03);
+        }
+
+        .stat-box h3 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            color: var(--accent-gold);
+        }
+
+        .stat-box p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+
+        /* --- 5. למה אנחנו? (Why Us Services) --- */
+        .services {
+            padding: 100px 6%;
+            background: rgba(255,255,255,0.01);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 5px;
+        }
+
+        .service-card {
             background: var(--bg-card);
             padding: 40px 30px;
-            border-radius: var(--radius-lg);
-            text-align: right;
-            border: 1px solid rgba(255,255,255,0.02);
-            transition: var(--transition);
+            border-radius: var(--radius-box);
+            border: 1px solid rgba(255,255,255,0.01);
+            transition: var(--transition-smooth);
         }
 
-        .feature-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(0, 240, 255, 0.2);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        .service-card:hover {
+            border-color: rgba(212, 175, 55, 0.15);
+            background: #161B22;
         }
 
-        .feature-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(112, 0, 255, 0.1);
-            border-radius: var(--radius-md);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent-glow);
-            font-size: 1.5rem;
-            margin-bottom: 25px;
-        }
-
-        .feature-card h4 {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        .feature-card p {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            line-height: 1.5;
-        }
-
-        /* --- 5. אזור תהליך עבודה (Process Timeline) --- */
-        .process {
-            padding: 100px 8%;
-            background: rgba(0,0,0,0.2);
-        }
-
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 50px auto 0 auto;
-        }
-
-        .timeline-item {
-            padding: 30px;
-            background: var(--bg-card);
-            border-radius: var(--radius-lg);
-            margin-bottom: 30px;
-            position: relative;
-            border-right: 4px solid var(--accent-glow);
-        }
-
-        .timeline-number {
-            position: absolute;
-            top: 25px; left: 30px;
+        .service-icon {
             font-size: 2rem;
-            font-weight: 800;
-            color: rgba(255,255,255,0.05);
+            color: var(--accent-gold);
+            margin-bottom: 20px;
         }
 
-        .timeline-item h5 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 8px;
+        .service-card h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
         }
 
-        /* --- 6. אזור חוות דעת יוקרתי (Testimonials) --- */
-        .testimonials {
-            padding: 100px 8%;
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* --- 6. אזור המלצות VIP (Testimonials) --- */
+        .reviews {
+            padding: 100px 6%;
             text-align: center;
         }
 
-        .testimonial-container {
-            max-width: 700px;
-            margin: 40px auto 0 auto;
-            background: linear-gradient(135deg, rgba(20,20,25,0.8), rgba(10,10,12,0.8));
-            padding: 50px;
-            border-radius: var(--radius-lg);
-            border: 1px solid rgba(255,255,255,0.05);
+        .review-card {
+            max-width: 750px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            padding: 50px 40px;
+            border-radius: var(--radius-box);
+            border-left: 5px solid var(--accent-gold);
             position: relative;
         }
 
-        .quote-icon {
-            font-size: 4rem;
-            color: rgba(0, 240, 255, 0.1);
-            position: absolute;
-            top: 10px; right: 30px;
-        }
-
-        .testimonial-text {
+        .review-text {
             font-size: 1.3rem;
             font-style: italic;
             line-height: 1.6;
-            margin-bottom: 25px;
-            position: relative;
-            z-index: 2;
+            color: #E2E8F0;
+            margin-bottom: 20px;
         }
 
-        .testimonial-author {
-            font-weight: 600;
-            color: var(--accent-glow);
+        .review-user {
+            font-weight: 700;
+            color: var(--accent-gold);
         }
 
-        /* --- 7. פוטר / הנעה לפעולה תחתונה --- */
+        /* --- 7. פוטר / הנעה לפעולה סופית --- */
         footer {
-            padding: 60px 8%;
+            padding: 60px 6% 120px 6%;
             text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: var(--text-secondary);
+            background: #06080A;
+            border-top: 1px solid rgba(255,255,255,0.04);
+            color: var(--text-muted);
             font-size: 0.9rem;
         }
 
-        /* --- 📞 כפתור טלפון קבוע צף פרימיום --- */
-        .floating-phone {
+        /* --- 📞 כפתור טלפון קבוע ויוקרתי (Floating Contact) --- */
+        .phone-float {
             position: fixed;
-            bottom: 35px;
-            left: 35px;
-            background: var(--phone-green);
+            bottom: 30px;
+            left: 30px;
+            background: var(--phone-color);
             width: 65px;
             height: 65px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 0 20px rgba(0, 230, 118, 0.4);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
             z-index: 2000;
             text-decoration: none;
-            transition: var(--transition);
+            transition: var(--transition-smooth);
         }
 
-        .floating-phone:hover {
+        .phone-float:hover {
             transform: scale(1.1) rotate(15deg);
-            box-shadow: 0 0 30px rgba(0, 230, 118, 0.7);
         }
 
-        .floating-phone svg {
+        .phone-float svg {
             width: 28px;
             height: 28px;
             fill: white;
         }
 
-        /* פעימת הניאון מסביב לטלפון */
-        .floating-phone::after {
+        .phone-float::before {
             content: '';
             position: absolute;
             width: 100%; height: 100%;
             border-radius: 50%;
-            border: 2px solid var(--phone-green);
-            animation: phonePulse 2.5s infinite;
-            opacity: 0;
+            border: 2px solid var(--phone-color);
+            animation: ripple 2s infinite;
         }
 
-        @keyframes phonePulse {
-            0% { transform: scale(1); opacity: 0.8; }
+        @keyframes ripple {
+            0% { transform: scale(1); opacity: 1; }
             100% { transform: scale(1.6); opacity: 0; }
         }
 
-        /* --- התאמה מלאה למובייל (רספונסיביות) --- */
+        /* =======================================================
+           📱 התאמה קיצונית לניידים (MOBILE FIRST & RESPONSIVE)
+           ======================================================= */
         @media (max-width: 968px) {
-            .hero {
-                flex-direction: column;
-                text-align: center;
-                padding-top: 140px;
+            header {
+                padding: 15px 5%;
             }
-            .hero-content { text-align: center; }
-            .hero h1 { font-size: 2.8rem; }
-            .hero-form-container { width: 100%; }
-            .feature-card { text-align: center; }
-            .feature-icon { margin: 0 auto 25px auto; }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            /* הפיכת תפריט הניווט למובייל לרשת נפתחת חלקה */
+            .nav-links {
+                position: absolute;
+                top: 100%; left: 0;
+                width: 100%;
+                background: #090B0E;
+                flex-direction: column;
+                gap: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-out;
+                border-bottom: 1px solid rgba(255,255,255,0.05);
+            }
+
+            .nav-links.open {
+                max-height: 300px;
+            }
+
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 20px;
+                border-bottom: 1px solid rgba(255,255,255,0.01);
+            }
+
+            /* סידור מחדש של ה-Hero במובייל */
+            .hero {
+                padding-top: 100px;
+                min-height: auto;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero-text {
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.6rem;
+            }
+
+            .hero-text p {
+                font-size: 1.1rem;
+                margin: 0 auto 30px auto;
+            }
+
+            .lead-card {
+                padding: 30px 20px;
+            }
+
+            .section-header {
+                text-align: center;
+            }
+
+            .section-header h2 {
+                font-size: 2.2rem;
+            }
+
+            /* 🌟 שדרוג חווית מובייל: גלריית הנכסים הופכת לסליידר רוחבי במקום רשת ארוכה שמתישה את הגולש */
+            .property-grid {
+                display: flex;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                gap: 20px;
+                padding-bottom: 15px;
+                padding-x: 10px;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .property-grid::-webkit-scrollbar {
+                height: 4px;
+            }
+            .property-grid::-webkit-scrollbar-thumb {
+                background: var(--accent-gold);
+                border-radius: 10px;
+            }
+
+            .property-card {
+                min-width: 85vw;
+                scroll-snap-align: center;
+            }
+
+            .stats {
+                gap: 20px;
+            }
+            
+            .stat-box {
+                width: 45%;
+            }
+
+            .stat-box h3 {
+                font-size: 2.4rem;
+            }
+
+            .review-card {
+                padding: 30px 20px;
+            }
+            
+            .review-text {
+                font-size: 1.1rem;
+            }
+
+            .phone-float {
+                bottom: 20px;
+                left: 20px;
+                width: 55px;
+                height: 55px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- סרגל ניווט -->
     <header>
-        <div class="logo">NEXT-GEN</div>
-        <button class="nav-btn" onclick="document.getElementById('form').scrollIntoView();">להשאיר פרטים</button>
+        <div class="logo">PRIME<span>.</span></div>
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#properties">נכסים בלעדיים</a></li>
+            <li><a href="#services">השירותים שלנו</a></li>
+            <li><a href="#reviews">לקוחות ממליצים</a></li>
+        </ul>
     </header>
 
-    <!-- 1. מסך ה-Hero הראשי -->
     <section class="hero">
-        <div class="hero-content reveal">
-            <span class="badge">טכנולוגיית העתיד כבר כאן</span>
-            <h1>הפתרון המושלם<br>לעסק <span>הדיגיטלי</span> שלך.</h1>
-            <p>אנחנו בונים מערכות אינטראקטיביות, דפי נחיתה ואפליקציות ברמת הגימור הגבוהה ביותר בשוק. הגיע הזמן להיראות כמו מותג פרימיום.</p>
-        </div>
+        <div class="hero-container">
+            <div class="hero-text reveal">
+                <h1>הנכס הבא שלך.<br>ברמת <span>Premium</span>.</h1>
+                <p>אנחנו ב-PRIME מאתרים, מתכננים ומלווים עסקאות נדל"ן יוקרתיות באזורי הביקוש החמים ביותר. השקעה בטוחה מתחילה בבחירה נכונה.</p>
+            </div>
 
-        <div class="hero-form-container reveal delay-1" id="form">
-            <div class="form-title">בוא נתחיל לעבוד</div>
-            <div class="form-subtitle">השאר פרטים ונחזור אליך עם אסטרטגיה מנצחת.</div>
-            <form onsubmit="event.preventDefault(); alert('הפרטים נקלטו! נציג יחזור אליך בהקדם.');">
-                <input type="text" class="input-field" placeholder="שם מלא" required>
-                <input type="tel" class="input-field" placeholder="מספר טלפון" required>
-                <input type="email" class="input-field" placeholder="כתובת אימייל (אופציונלי)">
-                <button type="submit" class="submit-btn">שילחו לי הצעה לקליק ⚡</button>
-            </form>
+            <div class="lead-card reveal delay-1">
+                <h3>תיאום פגישת אפיון VIP</h3>
+                <p>השאר פרטים קצרים ויועץ נדל"ן בכיר יחזור אליך.</p>
+                <form onsubmit="event.preventDefault(); alert('הבקשה התקבלה. נציג בכיר יתקשר אליך בשעות הקרובות.');">
+                    <div class="input-group">
+                        <input type="text" placeholder="שם מלא" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="tel" placeholder="מספר טלפון" required>
+                    </div>
+                    <div class="input-group">
+                        <select>
+                            <option>סוג הנכס המבוקש...</option>
+                            <option>דירת פנטהאוז</option>
+                            <option>וילה פרטית</option>
+                            <option>נדל"ן מסחרי / משרדים</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="submit-btn">חזרו אליי להצעה ⚡</button>
+                </form>
+            </div>
         </div>
     </section>
 
-    <!-- 2. אזור מספרים (Stats) -->
-    <section class="stats-section reveal">
-        <div class="stat-item">
-            <h3>+150</h3>
-            <p>פרויקטים מושקים</p>
+    <section class="stats reveal">
+        <div class="stat-box">
+            <h3>₪4.2B</h3>
+            <p>שווי עסקאות מנוהל</p>
         </div>
-        <div class="stat-item">
-            <h3>99%</h3>
-            <p>שביעות רצון לקוחות</p>
+        <div class="stat-box">
+            <h3>120+</h3>
+            <p>נכסי פרימיום בלעדיים</p>
         </div>
-        <div class="stat-item">
-            <h3>24/7</h3>
-            <p>תמיכה וליווי טכנולוגי</p>
+        <div class="stat-box">
+            <h3>15+</h3>
+            <p>שנות מצוינות בשוק</p>
+        </div>
+        <div class="stat-box">
+            <h3>100%</h3>
+            <p>דיסקרטיות ומקצועיות</p>
         </div>
     </section>
 
-    <!-- 3. אזור יתרונות ופיצ'רים (Features) -->
-    <section class="features">
+    <section id="properties" class="properties">
         <div class="section-header reveal">
-            <h2>למה לעבוד איתנו?</h2>
-            <p>אנחנו לא סתם כותבים קוד, אנחנו מייצרים חוויית משתמש שמוכרת בשבילך.</p>
+            <span>הצצה לקטלוג</span>
+            <h2>נכסים נבחרים מהשבוע</h2>
         </div>
 
-        <div class="features-grid">
-            <div class="feature-card reveal delay-1">
-                <div class="feature-icon">⚡</div>
-                <h4>מהירות עבודה עילאית</h4>
-                <p>האתרים שלנו נטענים בשבריר שנייה בזכות אופטימיזציה קשוחה לקוד ולתמונות.</p>
+        <div class="property-grid">
+            <div class="property-card reveal delay-1">
+                <div class="property-img prop-1"><span class="tag">בלעדי</span></div>
+                <div class="property-info">
+                    <div class="property-price">₪14,500,000</div>
+                    <div class="property-title">פנטהאוז אדריכלי - קו ראשון לים</div>
+                    <div class="property-details">
+                        <span>🛏️ 5 חדרים</span> | <span>📐 240 מ"ר</span> | <span>🏊 בריכה פרטית</span>
+                    </div>
+                </div>
             </div>
-            <div class="feature-card reveal delay-2">
-                <div class="feature-icon">🎨</div>
-                <h4>עיצוב בהתאמה אישית</h4>
-                <p>בלי תבניות משועממות. כל דף נבנה מאפס לפי אופי המותג וקהל היעד שלכם.</p>
+
+            <div class="property-card reveal delay-2">
+                <div class="property-img prop-2"><span class="tag">הזדמנות</span></div>
+                <div class="property-info">
+                    <div class="property-price">₪8,900,000</div>
+                    <div class="property-title">וילה מודרנית בשכונת המשתלה</div>
+                    <div class="property-details">
+                        <span>🛏️ 6 חדרים</span> | <span>📐 310 מ"ר</span> | <span>🌳 גינה ענקית</span>
+                    </div>
+                </div>
             </div>
-            <div class="feature-card reveal delay-3">
-                <div class="feature-icon">📈</div>
-                <h4>ממוקד המרות ומכירות</h4>
-                <p>מבנה הדף מתוכנן פסיכולוגית כדי להוביל את הגולש ישירות לשיחת הטלפון.</p>
+
+            <div class="property-card reveal delay-3">
+                <div class="property-img prop-3"><span class="tag">חדש בשוק</span></div>
+                <div class="property-info">
+                    <div class="property-price">₪22,000,000</div>
+                    <div class="property-title">האחוזה הקיסרית - מגרש גולף</div>
+                    <div class="property-details">
+                        <span>🛏️ 8 חדרים</span> | <span>📐 550 מ"ר</span> | <span>🍷 מרתף יין</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- 4. אזור תהליך העבודה (Process) -->
-    <section class="process">
+    <section id="services" class="services">
         <div class="section-header reveal">
-            <h2>איך זה עובד?</h2>
-            <p>3 צעדים פשוטים עד שהאתר החדש שלך באוויר.</p>
+            <span>הערך המוסף שלנו</span>
+            <h2>מעטפת הליווי של PRIME</h2>
         </div>
 
-        <div class="timeline">
-            <div class="timeline-item reveal delay-1">
-                <div class="timeline-number">01</div>
-                <h5>שיחת אפיון ותכנון</h5>
-                <p>נבין בדיוק מי הלקוחות שלכם, מה המוצר שלכם ואיך נכון להציג אותו כדי לשבור את השוק.</p>
+        <div class="services-grid">
+            <div class="service-card reveal delay-1">
+                <div class="service-icon">🔍</div>
+                <h4>איתור נכסים Off-Market</h4>
+                <p>גישה למאגר דירות וקרקעות חסויים שלא מפורסמים בשום אתר או רשת חברתית בארץ.</p>
             </div>
-            <div class="timeline-item reveal delay-2">
-                <div class="timeline-number">02</div>
-                <h5>עיצוב ופיתוח קוד קפדני</h5>
-                <p>אנחנו מעצבים ומפתחים את דף הנחיתה עם הדגשים הכי מתקדמים, רספונסיביות מלאה ואנימציות חלוקות.</p>
+            <div class="service-card reveal delay-2">
+                <div class="service-icon">⚖️</div>
+                <h4>ייעוץ משפטי ומיסוי מלא</h4>
+                <p>צוות עורכי הדין ויועצי המס שלנו יתכנן עבורכם את מבנה העסקה החסכוני ביותר כחוק.</p>
             </div>
-            <div class="timeline-item reveal delay-3">
-                <div class="timeline-number">03</div>
-                <h5>QA והשקה חגיגית</h5>
-                <p>בודקים שהכל עובד מושלם בכל המכשירים (אייפון, אנדרואיד, מחשבים) ומעלים את האתר לאוויר.</p>
+            <div class="service-card reveal delay-3">
+                <div class="service-icon">🤝</div>
+                <h4>ניהול משא ומתן קשוח</h4>
+                <p>אנחנו נלחמים על כל שקל ומשיגים עבורכם את תנאי התשלום והמחיר האטרקטיבי ביותר בשוק.</p>
             </div>
         </div>
     </section>
 
-    <!-- 5. אזור המלצות (Testimonial) -->
-    <section class="testimonials">
-        <div class="section-header reveal">
-            <h2>לקוחות שכבר שינו את חוקי המשחק</h2>
+    <section id="reviews" class="reviews">
+        <div class="section-header reveal" style="text-align: center;">
+            <span>לקוחות מרוצים</span>
+            <h2>אמון שבונים לאורך שנים</h2>
         </div>
-        <div class="testimonial-container reveal delay-1">
-            <div class="quote-icon">”</div>
-            <p class="testimonial-text">"חיפשתי מישהו שיבנה לי דף שלא ייראה כמו עוד תבנית קבועה מהאינטרנט. הם הביאו לי מוצר ברמת הייטק, האנימציות עובדות חלק והלידים לא מפסיקים להגיע. ממליץ בחום!"</p>
-            <div class="testimonial-author">עידן דויטש // מנכ"ל דויטש דיגיטל</div>
+        
+        <div class="review-card reveal delay-1">
+            <p class="review-text">"הגעתי ל-PRIME אחרי חודשים של חיפושים מתישים. תוך שבוע הם הציגו לי נכס Off-Market מדהים שסגר בדיוק את כל הצרכים של המשפחה שלי. המקצועיות, הדיסקרטיות והרמה היו פשוט פנומנליים."</p>
+            <div class="review-user">אביב ד. // קבוצת דויטש אחזקות</div>
         </div>
     </section>
 
-    <!-- פוטר סיומת -->
     <footer>
-        <p>© 2026 NEXT-GEN Initiatives. כל הזכויות שמורות. נבנה בסטנדרט הגבוה ביותר.</p>
+        <p>© 2026 PRIME Real Estate Initiatives. כל הזכויות שמורות.<br>נבנה בסטנדרט פיתוח Mobile-First מחמיר.</p>
     </footer>
 
-    <!-- 📞 כפתור טלפון קבוע צף עם פעימת ניאון -->
-    <a href="tel:0500000000" class="floating-phone" title="חייג עכשיו לנציג">
+    <a href="tel:0500000000" class="phone-float" title="חייג עכשיו למשרד">
         <svg viewBox="0 0 24 24">
             <path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1.02 1.02 0 0 0-1.02.24l-2.2 2.2a15.045 15.045 0 0 1-6.59-6.59l2.2-2.21a1.02 1.02 0 0 0 .24-1.02A11.36 11.36 0 0 1 8.5 4c0-.56-.44-1-1-1H4c-.56 0-1 .44-1 1 0 9.39 7.61 17 17 17 .56 0 1-.44 1-1v-3.5c0-.56-.44-1-1-1z"/>
         </svg>
     </a>
 
-    <!-- 🧠 סקריפט לאנימציות גלילה מקצועיות וחלקות -->
     <script>
-        const revealElements = document.querySelectorAll('.reveal');
+        // פונקציית תפריט מובייל נפתח
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('open');
+        }
 
+        // מערכת אנימציית גלילה חלקה
+        const revealElements = document.querySelectorAll('.reveal');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
                 }
             });
-        }, {
-            threshold: 0.15 /* האנימציה תתחיל כשאחוז מהאלמנט נראה לעין */
-        });
+        }, { threshold: 0.12 });
 
         revealElements.forEach(el => observer.observe(el));
     </script>
